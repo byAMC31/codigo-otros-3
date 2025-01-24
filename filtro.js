@@ -8,8 +8,10 @@ const productos = [
   {nombre: "Zapato rojo", tipo: "zapato", color: "rojo", img: "./zapato-rojo.jpg"}
 ]
 
-const li = document.getElementsByName("lista-de-productos")
-const $i = document.querySelector('.input');
+//cambié el nombre de las constantes para identificarlas mejor
+const listaDeProductos = document.getElementById("lista-de-productos");
+const filtroInput = document.getElementById("filtro-input");
+const botonDeFiltro = document.getElementById("filtrar-boton");
 
 for (let i = 0; i < productos.length; i++) {
   var d = document.createElement("div")
@@ -25,18 +27,15 @@ for (let i = 0; i < productos.length; i++) {
   d.appendChild(ti)
   d.appendChild(imagen)
 
-  li.appendChild(d)
+  listaDeProductos.appendChild(d); //Cambié 'li' por 'listaDeProductos'
 }
 
-displayProductos(productos)
-const botonDeFiltro = document.querySelector("button");
+//displayProductos(productos) //no estaba definida esta función
 
 botonDeFiltro.onclick = function() {
-  while (li.firstChild) {
-    li.removeChild(li.firstChild);
-  }
+  listaDeProductos.innerHTML = "";
 
-  const texto = $i.value;
+  const texto = filtroInput.value;
   console.log(texto);
   const productosFiltrados = filtrado(productos, texto );
 
@@ -54,7 +53,7 @@ botonDeFiltro.onclick = function() {
     d.appendChild(ti)
     d.appendChild(imagen)
   
-    li.appendChild(d)
+    listaDeProductos.appendChild(d); //cambie li por listaDeProductos
   }
 }
 
